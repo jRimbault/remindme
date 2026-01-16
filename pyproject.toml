@@ -1,0 +1,56 @@
+[project]
+name = "remindme"
+version = "0.1.0"
+description = "Schedule desktop notification reminders from the command line"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["python-dateutil>=2.9.0.post0"]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.408",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.11",
+]
+
+[project.scripts]
+remindme = "remindme.__main__:script"
+
+[tool.uv]
+package = true
+
+[tool.uv.sources]
+remindme = { workspace = true }
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "Q", "RUF", "PL", "FLY", "N"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["PLR2004"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--cov=remindme",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-branch",
+]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.pyright]
+include = ["src"]
+exclude = ["tests"]
+typeCheckingMode = "strict"
+pythonVersion = "3.13"
