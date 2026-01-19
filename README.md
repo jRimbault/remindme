@@ -8,6 +8,12 @@ Schedule desktop notifications from the command line.
 uv tool install .
 ```
 
+or
+
+```bash
+uv tool install git+https://github.com/jRimbault/remindme.git
+```
+
 ## Usage
 
 ```bash
